@@ -31,34 +31,6 @@ export class Dashboard implements OnInit {
     }
 
     
- 
-   
-  
-
-  //  const promise=new Promise(res=>{
-  //    setTimeout(()=>{
-  //      res("promise calling")
-  //      res("promise calling1")
-  //      res("promise calling2")
-  //    },1000)
-  
-  //  })
-  //  promise.then(x=>{
-  //   console.log(x)
-  // })
-
-  // const obs=new Observable(res=>{
-  //   setTimeout(()=>{
-  //     res.next('observable calling')
-  //     res.next('observable calling1')
-  //     res.next('observable calling2')
-  //   },1000)
-  // })
-
-  // obs.subscribe(x=>{
-  //   console.log(x)
-  // })
-
     this.draw();
 
 

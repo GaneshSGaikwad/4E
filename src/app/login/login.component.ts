@@ -13,7 +13,7 @@ import { TokenStorageService } from '../token.service';
 })
 export class LoginComponent implements OnInit {
 
-  //user1=new User();
+ 
 
   constructor(private fb: FormBuilder, private router: Router, private as: AuthService, private http: HttpClient,private ts:TokenStorageService) { }
 
@@ -81,23 +81,6 @@ export class LoginComponent implements OnInit {
   }
 
 
-  // login() {
-  //   this.as.login()
-  //     .subscribe(res => {
-  //       const user = res.find((a: any) => {
-  //         return a.email === this.loginForm.value.user && a.password === this.loginForm.value.password
-  //       });
-  //       if (user) {
-  //         localStorage.setItem('user', this.user?.value);
-
-  //         alert('Login Succesful');
-
-  //         this.router.navigate(['/dashboard'])
-  //         this.loginForm.reset();
-  //       } else {
-  //         alert("user not found")
-  //       }
-  //     })
-  // }
+ 
 
 }

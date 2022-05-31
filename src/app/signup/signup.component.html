@@ -1,0 +1,54 @@
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.4.1/css/bootstrap.min.css">
+
+<div class="container"  >
+    <div class="row m-5 no-gutters shadow-lg">
+        <div class="col-md-6 d-none d-md-block">
+
+        </div>
+        <div class="col-md-6 bg-white p-5">
+            <h3 class="pb-3">Signup Form</h3>
+            <div class="form-style">
+                <form  [formGroup]="signupForm"  (ngSubmit)="signup()">
+                   
+                    <div class="form-group pb-3">
+                        <input type="text" placeholder="Name" class="form-control"
+                            formControlName="name">
+                            <span style="color: red;" *ngIf="name && name.invalid && name.touched">Enter the Name</span>
+                    </div>
+                   
+
+                    <div class="form-group pb-3">
+                        <input type="email" placeholder="Email" class="form-control" 
+                            formControlName="username">
+                            <span style="color: red;" *ngIf="username && username.invalid && username.touched "> Enter the email</span>
+                    </div>
+
+                    
+
+                    <div class="form-group pb-3">
+                        <input type="password" placeholder="Password" class="form-control" formControlName="password">
+                        <span style="color: red;" *ngIf="password && password.invalid && password.touched "> Enter the
+                            password</span>
+                    </div>
+
+                  
+
+                    
+                    <div class="pb-2">
+                        <button   type="submit"
+                            class="btn btn-dark w-100 font-weight-bold mt-2">Submit</button>
+                    </div>
+                </form>
+
+                <div class="pt-4 text-center">
+                    <a routerLink="/login">Log in</a>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-md-6 d-none d-md-block">  
+
+        </div> 
+
+    </div>
+</div>

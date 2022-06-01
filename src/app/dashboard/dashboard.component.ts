@@ -24,11 +24,11 @@ export class Dashboard implements OnInit {
 
   ngOnInit(): void {
 
-    if(this.ts.getToken()!=null){
-      this.router.navigate(['/dashboard']);
-    }else{
-      this.router.navigate(['/login']);
-    }
+    // if(this.ts.getToken()!=null){
+    //   this.router.navigate(['/dashboard']);
+    // }else{
+    //   this.router.navigate(['/login']);
+    // }
 
     
     this.draw();
@@ -50,7 +50,7 @@ export class Dashboard implements OnInit {
   logout(){
      this.ts.signOut();
      window.location.reload();
-     //this.router.navigate(['/login']);
+     this.router.navigate(['/login']);
   }
 
 

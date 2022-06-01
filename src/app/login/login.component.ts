@@ -62,7 +62,7 @@ export class LoginComponent implements OnInit {
 
         
         this.ts.saveToken(data.response);
-        console.log(data.respone);
+        console.log(data.response);
         
         this.ts.saveUser(data);
         localStorage.setItem('user', this.user?.value);

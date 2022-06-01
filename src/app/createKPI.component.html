@@ -1,1 +1,73 @@
-<h1>Hello KPI</h1>
+<app-navbar></app-navbar>
+
+<br>
+
+<form [formGroup]="kpiForm" (ngSubmit)="submit()">
+  <div class="col">
+    <label>Title : </label>
+    <input type="text" placeholder="title" formControlName="title">
+  </div>
+  <br>
+
+ 
+
+  <label for="dept"> Department Id :</label>
+  <select formControlName="departmentId">
+    <ng-container *ngFor="let x of dep">
+      <option [value]="x.id">{{x.name}}</option>
+    </ng-container>
+  </select>
+  <br> <br>
+
+  <label for="dept"> Perspective :</label>
+  <select id="dept" formControlName="perspective">
+    <ng-container *ngFor="let x of pers">
+      <option [value]="x.perspective">{{x.perspective}}</option>
+    </ng-container>
+
+  </select>
+
+  <br> <br>
+
+  <label for="dept"> Goal Description :</label>
+  <input type="text" placeholder="add a description" formControlName="goalDescription">
+
+
+  <br> <br>
+
+  <label for="dept">Remark :</label>
+  <input type="text" placeholder="add a remark" formControlName="remark">
+
+
+  <br> <br>
+
+  <label for="dept">Data Capture Frequency :</label>
+  <select (change)="onChange($event)" id="dept" formControlName="dataCaptureFrequency">
+    <ng-container *ngFor="let x of datac">
+      <option [value]="x._id">{{x.value}}</option>
+    </ng-container>
+
+
+  </select>
+
+  <br> <br>
+
+  <label for="dept">Review Frequency :</label>
+  <select id="dept" formControlName="reviewFrequency">
+
+
+    <ng-container *ngFor="let x of review">
+      <option [value]="x._id">{{x.value}}</option>
+    </ng-container>
+
+
+  </select>
+
+  <br><br>
+
+  <button class="btn btn-success">Submit</button>
+
+
+
+</form>
+

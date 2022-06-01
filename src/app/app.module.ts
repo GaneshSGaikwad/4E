@@ -10,9 +10,11 @@ import { LoginComponent } from './login/login.component';
 
 
 
-import { HttpClientModule } from '@angular/common/http';
+import { HttpClient, HttpClientModule } from '@angular/common/http';
 import { SignupComponent } from './signup/signup.component';
 import { CreateKPI } from './createKPI.component';
+import { authInterceptorProviders } from './auth.interceptor';
+import { Navbar } from './navbar/navbar.component';
 
 
 @NgModule({
@@ -21,7 +23,7 @@ import { CreateKPI } from './createKPI.component';
     SignupComponent,
     routingcomponent,
     CreateKPI,
-    
+    Navbar
    
   ],
   imports: [
@@ -34,7 +36,7 @@ import { CreateKPI } from './createKPI.component';
     
    
   ],
-  providers: [],
+  providers: [authInterceptorProviders,HttpClient],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

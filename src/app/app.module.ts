@@ -15,6 +15,7 @@ import { SignupComponent } from './signup/signup.component';
 import { CreateKPI } from './createKPI.component';
 import { authInterceptorProviders } from './auth.interceptor';
 import { Navbar } from './navbar/navbar.component';
+import { ListofkpiComponent } from './listofkpi/listofkpi.component';
 
 
 @NgModule({
@@ -23,7 +24,8 @@ import { Navbar } from './navbar/navbar.component';
     SignupComponent,
     routingcomponent,
     CreateKPI,
-    Navbar
+    Navbar,
+    ListofkpiComponent
    
   ],
   imports: [

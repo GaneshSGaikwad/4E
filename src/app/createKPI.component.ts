@@ -4,7 +4,8 @@ import { kpiService } from "./kpi.service";
 
 @Component({
     selector:'app-kpi',
-    templateUrl:'./createKPI.component.html'
+    templateUrl:'./createKPI.component.html',
+    styleUrls:['./createKPI.component.css']
 })
 
 export class CreateKPI implements OnInit{
@@ -12,6 +13,9 @@ export class CreateKPI implements OnInit{
     pers:any=[];
     datac:any=[];
     review:any=[];
+    typearray:any=[];
+    category:any=[];
+    year:any=[];
 
     x!:any;
     y!:any
@@ -22,70 +26,17 @@ export class CreateKPI implements OnInit{
         this.perspective();
         this. datacf();
         this.reviewf();
+        this.type();
+        this.getCategory();
+        this.financialYear();
+
+        
+
+        
+        
     }
 
-    // kpiForm=this.fb.group({
-    //     title:['',Validators.required],
-    //     deptId:['',Validators.required],
-    //     perspective:['',Validators.required],
-    //     goal:['',Validators.required],
-    //     remark:['',Validators.required],
-    //     dcf:['',Validators.required],
-    //     rf:['',Validators.required],
-
-    //     annualTarget:[100],
-    //     actionLimit:['MANUAL'],
-    //     category:['5ea2c50f1d4ec94491c08030'],
-    //     isTypeKPI:[true],
-    //     type:['606573e173d7e41e2e59a4b0'],
-
-    //     parentId:[null],
-    //     perspectivePrefix:['I'],
-    //     directionOfGoodness:['Up'],
-    //     ytdCalculation:['SUM'],
-    //     weightage:[1],
-
-    //     captureData: [[{
-    //         target:[0],
-    //         lower:[0],
-    //         upper:[0],
-    //         startDate:['2022-05-01T00:00:00'],
-    //         endDate:['2022-05-31T23:59:59'],
-    //         indicator:[2],
-    //         disabled:[false],
-    //         upperValueType:['ABSOLUTE'],
-    //         lowerValueType:['ABSOLUTE'],
-
-    //     }]],
-
-    //     unitOfMeasurement:['606573e173d7e41e2e59a4ab'],
-    //     goalFormula:[null],
-    //     isActive:[true],
-       
-
-    //     owners:[[{
-    //         individuals:this.fb.group({
-    //             employeeId:['vikas.raut'],
-    //             isPrimary:[true],
-    //         })
-    //     }]],
-
-    //     viewers:[[{
-
-    //         individuals:this.fb.group({
-    //         }),
-    //         groups:this.fb.group({
-    //         }),
-    //     }]],
-
-    //     financialYearStart: ["1648751400000"],
-    //     financialYearEnd: ['1680287399000'],
-    //     dataAggregationFrequency: ["62833d7b412ac9eebe3a3c17"],
-    //     dataAggregationMethod: ["SUM"]
-       
-
-
-    // })
+ 
 
     kpiForm = this.fb.group(
         {
@@ -98,9 +49,9 @@ export class CreateKPI implements OnInit{
             remark:[''],
             annualTarget: 100,
             actionLimit: 'MANUAL',  
-            category: '5ea2c50f1d4ec94491c08030',
+            category: '',
             isTypeKPI: true,
-            type: '606573e173d7e41e2e59a4b0',
+            type: '',
             parentId: null,
             perspectivePrefix: 'I',
             directionOfGoodness: 'Up',
@@ -125,7 +76,7 @@ export class CreateKPI implements OnInit{
             owners: {
                 individuals: [
                         {
-                            employeeId: 'vikas.raut',
+                            employeeId: 'ganesh.gaikwad',
                             isPrimary: true
                         }
                     ]
@@ -156,7 +107,8 @@ export class CreateKPI implements OnInit{
             console.log("err")
         }
 
-        //console.log(this.kpiForm.value);
+        console.log(this.typearray)
+
         this.kpiForm.reset();
 
     }
@@ -216,5 +168,29 @@ export class CreateKPI implements OnInit{
              }
         } )
     }
+
+    type(){
+        //console.log(this.typearray);
+        return this.ks.type().subscribe(({response})=>
+         this.typearray=response
+        
+    )
+    }
+
+    getCategory(){
+        return this.ks.category().subscribe(({response})=>
+        this.category=response
+       
+   )
+    }
+
+    financialYear(){
+        return this.ks.fystart().subscribe(({response})=>{
+            this.year=response
+        })
+    }
+
+
+    
 
 }

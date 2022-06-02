@@ -3,6 +3,7 @@ import { RouterModule, Routes } from '@angular/router';
 import { AuthGuard } from './auth.guard';
 import { CreateKPI } from './createKPI.component';
 import { Dashboard } from './dashboard/dashboard.component';
+import { ListofkpiComponent } from './listofkpi/listofkpi.component';
 import { LoginComponent } from './login/login.component';
 import { SignupComponent } from './signup/signup.component';
 
@@ -11,7 +12,8 @@ const routes: Routes = [
    {path:'dashboard' ,component:Dashboard , canActivate:[AuthGuard]},
   {path:'login' ,component:LoginComponent },
   {path:'signup' ,component:SignupComponent },
-  {path:'createkpi' ,component:CreateKPI,canActivate:[AuthGuard]}
+  {path:'createkpi' ,component:CreateKPI,canActivate:[AuthGuard]},
+  {path:'listofkpi' ,component:ListofkpiComponent,canActivate:[AuthGuard]}
 ]
 
 @NgModule({

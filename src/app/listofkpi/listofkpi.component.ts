@@ -12,6 +12,8 @@ export class ListofkpiComponent implements OnInit {
 
   kpiList:any=[];
 
+  id:string='';
+
   ngOnInit(): void {
     this.createdKpi();
   }
@@ -24,5 +26,12 @@ export class ListofkpiComponent implements OnInit {
 //     console.log(data)
 //  })
 }
+
+fetchId(a:any){
+  let x=a.target.value;
+  this.id=x;
+  console.log(this.id)
+}
+
 
 }

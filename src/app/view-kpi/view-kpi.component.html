@@ -1,0 +1,76 @@
+
+ <!-- <div *ngFor="let item of displayKpi()">
+    <label>Title :{{item.title}} </label><br>
+    <label>Department Id :{{item.departmentId}} </label> 
+ 
+ </div> -->
+
+<div class="row">
+    <div class="col">
+
+    </div>
+
+   
+
+    <div class="col" *ngFor="let item of displayKpi()" style="outline: auto;">
+
+    <div class="row">
+       
+    </div>
+    <div class="row">
+       
+    </div>
+
+    <div class="row">
+        <table>
+            <thead></thead>
+            <tbody>
+                <tr>
+                    <td>Title</td>
+                    <td>:</td>
+                    <td>{{item.title}}</td>
+                </tr>
+
+                <tr>
+                    <td>ownerEmployeeId</td>
+                    <td>:</td>
+                    <td>{{item.ownerEmployeeId}}</td>
+                </tr>
+
+                <tr>
+                    <td>Department Id </td>
+                    <td>:</td>
+                    <td>{{item.departmentId}}</td>
+                </tr>
+
+                <tr>
+                    <td>Department Name </td>
+                    <td>:</td>
+                    <td>{{item.departmentName}}</td>
+                </tr>
+
+                <tr>
+                    <td>Perspective </td>
+                    <td>:</td>
+                    <td>{{item._id}}</td>
+                </tr>
+
+                <tr>
+                    <td>Type </td>
+                    <td>:</td>
+                    <td>{{item.type}}</td>
+                </tr>
+
+               
+            </tbody>
+        </table>
+    </div>
+
+    <div class="row">
+
+    </div>
+
+    </div>
+
+</div>
+

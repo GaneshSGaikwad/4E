@@ -11,6 +11,7 @@ const type_Api='https://dev-api.tqmi.io/setting-management/api/kpi-types';
 const category_Api='https://dev-api.tqmi.io/setting-management/api/kpi-categories';
 const fy_Api='https://dev-api.tqmi.io/setting-management/api/financial-years-list'
 const created_Api='https://dev-api.tqmi.io/org-goal-management/api/goal/get-kpi-list-given-date-range?start=1648751400000&end=1680287399000&includeViewOnly=true';
+const month_Api='https://dev-api.tqmi.io/setting-management/api/month-range';
 
 const httpOptions = {
     headers: new HttpHeaders({ 'Content-Type': 'application/json' })
@@ -63,5 +64,10 @@ export class kpiService{
 
     return this.http.get(created_Api);
 
+  }
+
+  selectMonth():Observable<any>{
+
+    return this.http.get(month_Api);
   }
 }

@@ -2,15 +2,13 @@
 
 <br>
 
-
-
-<div >
+<div>
   <div class="row">
 
     <div class="col-3">
 
     </div>
-    <div class="col-6">
+    <div class="col-6" >
       <form [formGroup]="kpiForm" (ngSubmit)="submit()">
         <table>
           <thead></thead>
@@ -20,7 +18,7 @@
               <td>:</td>
               <td><input type="text" placeholder="title" formControlName="title"></td>
             </tr>
-           
+
             <tr>
               <td> <label for="dept"> Department Id</label></td>
               <td>:</td>
@@ -30,7 +28,7 @@
                   </ng-container>
                 </select></td>
             </tr>
-           
+
 
             <tr>
               <td><label for="dept"> Perspective </label>
@@ -40,9 +38,9 @@
                   <ng-container *ngFor="let x of pers">
                     <option [value]="x._id">{{x.perspective}}</option>
                   </ng-container>
-                 </select></td>
+                </select></td>
             </tr>
-           
+
             <tr>
               <td><label for="dept"> Goal Description </label>
 
@@ -50,25 +48,25 @@
               <td>:</td>
               <td> <input type="text" placeholder="add a description" formControlName="goalDescription"></td>
             </tr>
-           
+
             <!-- <tr>
-              <td><label for="dept">Financial Year Start</label>
-               </td>
+              <td><label for="dept">Financial Year </label>
+              </td>
               <td>:</td>
-              <td> <select id="dept" formControlName="financialYearStart">
-                <ng-container *ngFor="let x of year">
-                    <option [value]="x.start">{{x.start}}</option>
+              <td> <select id="dept" formControlName="financialYearStart" >
+                  <ng-container *ngFor="let x of year">
+                    <option [value]="x.startUnix" >FY {{x.start | date:'y'}}-{{x.end | date:'y'}}</option>
                   </ng-container>
                 </select></td>
             </tr> -->
-           
+
             <tr>
               <td><label for="dept">Remark :</label>
               </td>
               <td>:</td>
               <td> <input type="text" placeholder="add a remark" formControlName="remark"></td>
             </tr>
-            
+
 
             <tr>
               <td> <label for="dept">Data Capture Frequency </label>
@@ -80,7 +78,7 @@
                   </ng-container>
                 </select></td>
             </tr>
-           
+
             <tr>
               <td> <label for="dept">Review Frequency </label>
               </td>
@@ -91,7 +89,7 @@
                   </ng-container>
                 </select></td>
             </tr>
-           
+
             <tr>
               <td><label for="dept">Type </label>
               </td>
@@ -102,7 +100,7 @@
                   </ng-container>
                 </select></td>
             </tr>
-            
+
             <tr>
               <td><label for="dept">Category </label>
               </td>
@@ -112,110 +110,47 @@
                     <option [value]="x._id">{{x.category}}</option>
                   </ng-container>
                 </select></td>
-             </tr>
+            </tr>
+
+            <tr>
+              <td><label for="dept">Select Month </label>
+              </td>
+              <td>:</td>
+              <td>
+                <ng-select [items]="list" bindLabel="name" bindValue="id" [(ngModel)]="selectedMonth"
+                  [ngModelOptions]="{standalone: true}" [multiple]="true" (add)="addCaptureData($event)"
+                  (remove)="removeData(selectedMonth)" (clear)="clearData()">
+                </ng-select>
+              </td>
+            </tr>
+            <div>
+              <ng-container formArrayName="captureData">
+                <ng-container *ngFor="let item of captureData.controls; let i=index">
+                  <div formGroupName="{{i}}">
+                    {{Month.name}}
+                    <label>Target</label><br />
+                    <input formControlName="target" id="{{ i }}" type="text" />
+                    <br />
+                    <label>Upper</label><br />
+                    <input formControlName="upper" id="{{ i }}" type="text" />
+                    <br />
+                    <label>Lower</label><br />
+                    <input formControlName="lower" id="{{ i }}" type="text" />
+                    <button (click)="removeData(i)">remove</button>
+                  </div>
+                </ng-container>
+              </ng-container>
+            </div>
           </tbody>
-      </table>
+        </table>
         <hr>
-        <button class="btn btn-success" [disabled]="!kpiForm.valid">Submit</button>
-         </form>
-         </div>
+        <!-- [disabled]="!kpiForm.valid" -->
+        <div style="text-align: center;">
+          <button class="btn btn-success">Submit</button>
+        </div>
+      </form>
+    </div>
     <div class="col-3">
-       </div>
-       </div>
+    </div>
+  </div><br>
 </div>
-
-
-
-
-
-
-
-
-
-<!-- <form [formGroup]="kpiForm" (ngSubmit)="submit()">
-  <div class="col">
-    <label>Title : </label>
-    <input type="text" placeholder="title" formControlName="title">
-  </div>
-  <br>
-
- 
-
-  <label for="dept"> Department Id :</label>
-  <select formControlName="departmentId">
-    <ng-container *ngFor="let x of dep">
-      <option [value]="x.id">{{x.name}}</option>
-    </ng-container>
-  </select>
-  <br> <br>
-
-  <label for="dept"> Perspective :</label>
-  <select id="dept" formControlName="perspective">
-    <ng-container *ngFor="let x of pers">
-      <option [value]="x._id">{{x.perspective}}</option>
-    </ng-container>
-
-  </select>
-
-  <br> <br>
-
-  <label for="dept"> Goal Description :</label>
-  <input type="text" placeholder="add a description" formControlName="goalDescription">
-
-
-  <br> <br>
-
-  <label for="dept">Remark :</label>
-  <input type="text" placeholder="add a remark" formControlName="remark">
-
-
-  <br> <br>
-
-  <label for="dept">Data Capture Frequency :</label>
-  <select (change)="onChange($event)" id="dept" formControlName="dataCaptureFrequency">
-    <ng-container *ngFor="let x of datac">
-      <option [value]="x._id">{{x.value}}</option>
-    </ng-container>
-
-
-  </select>
-
-  <br> <br>
-
-  <label for="dept">Review Frequency :</label>
-  <select id="dept" formControlName="reviewFrequency">
- <ng-container *ngFor="let x of review">
-      <option [value]="x._id">{{x.value}}</option>
-    </ng-container>
- </select>
-<br><br>
-
-<label for="dept">Type :</label>
-<select id="dept" formControlName="type">
-<ng-container *ngFor="let x of typearray">
-    <option [value]="x._id">{{x.type}}</option>
-  </ng-container>
-</select>
-<br><br>
-
-<label for="dept">Category :</label>
-<select id="dept" formControlName="category">
-<ng-container *ngFor="let x of category">
-    <option [value]="x._id">{{x.category}}</option>
-  </ng-container>
-</select>
-<br><br> -->
-
-<!-- <label for="dept">Financial Year Start :</label>
-<select id="dept" formControlName="financialYearStart">
-<ng-container *ngFor="let x of year">
-    <option [value]="x.start">{{x.start}}</option>
-  </ng-container>
-</select>
-<br><br> -->
-<!-- [disabled]="!kpiForm.valid" -->
-<!-- <button class="btn btn-success" [disabled]="!kpiForm.valid" >Submit</button>
-
-
-
-</form> -->

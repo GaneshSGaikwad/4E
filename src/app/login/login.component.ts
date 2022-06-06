@@ -6,6 +6,8 @@ import { AuthService } from '../auth.service';
 import { TokenStorageService } from '../token.service';
 
 
+
+
 @Component({
   selector: 'app-login',
   templateUrl: './login.component.html',
@@ -33,6 +35,8 @@ export class LoginComponent implements OnInit {
   isLoginFailed = false;
   errorMessage = 'username or password is wrong';
 
+  isClicked!:boolean;
+
 
   ngOnInit(): void {
  
@@ -59,13 +63,18 @@ export class LoginComponent implements OnInit {
    
     this.as.login(this.loginForm.value.user, this.loginForm.value.password).subscribe(
       data => {
+       
+        //console.log("remember me "+this.isClicked)
+      this.ts.saveToken(data.response,this.isClicked);
 
-        
-        this.ts.saveToken(data.response);
+       
         console.log(data.response);
+       
         
         this.ts.saveUser(data);
         localStorage.setItem('user', this.user?.value);
+
+       
         alert('Login Succesful');
         this.isLoginFailed = false;
         this.isLoggedIn = true;
@@ -80,6 +89,12 @@ export class LoginComponent implements OnInit {
     );
   }
 
+
+  rememberMe(isClick:boolean){
+    
+      this.isClicked=isClick;
+      
+  }
 
  
 

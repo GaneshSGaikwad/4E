@@ -1,4 +1,6 @@
 import { NgModule } from '@angular/core';
+
+
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { BrowserModule } from '@angular/platform-browser';
 
@@ -19,6 +21,16 @@ import { ListofkpiComponent } from './listofkpi/listofkpi.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { ViewKpiComponent } from './view-kpi/view-kpi.component';
 import { CommonModule } from '@angular/common';
+import { PagenotfoundComponent } from './pageNotFound/pagenotfound.component';
+import { OrgTreeComponent } from './org-tree/org-tree.component';
+
+import { MatTreeModule } from '@angular/material/tree';
+import { MatIconModule } from '@angular/material/icon';
+import { PiechartComponent } from './piechart/piechart.component'
+
+
+
+
 
 
 @NgModule({
@@ -29,7 +41,10 @@ import { CommonModule } from '@angular/common';
     CreateKPI,
     Navbar,
     ListofkpiComponent,
-    ViewKpiComponent
+    ViewKpiComponent,
+    PagenotfoundComponent,
+    OrgTreeComponent,
+    PiechartComponent
    
   ],
   imports: [
@@ -42,7 +57,11 @@ import { CommonModule } from '@angular/common';
     NgMultiSelectDropDownModule.forRoot(),
     BrowserAnimationsModule,
     NgSelectModule,
-    CommonModule
+    CommonModule,
+    MatTreeModule,
+    MatIconModule
+
+  
     
     
    

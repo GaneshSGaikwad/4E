@@ -2,7 +2,10 @@ import { Component, OnInit } from "@angular/core";
 import { FormArray, FormBuilder, Validators } from "@angular/forms";
 import { kpiService } from "./kpi.service";
 import { IDropdownSettings } from 'ng-multiselect-dropdown';
-import { CommonModule } from "@angular/common";
+
+import { TokenStorageService } from "./token.service";
+
+
 
 @Component({
     selector: 'app-kpi',
@@ -31,13 +34,13 @@ export class CreateKPI implements OnInit {
     id!: number;
 
     Month!: any;
-
+    empId!: any;
 
     //dropdown 
 
     selectedMonth!: number;
 
-    constructor(private fb: FormBuilder, private ks: kpiService) { }
+    constructor(private fb: FormBuilder, private ks: kpiService, private tokenService: TokenStorageService) { }
     ngOnInit(): void {
         this.dept();
         this.perspective();
@@ -48,21 +51,28 @@ export class CreateKPI implements OnInit {
         this.financialYear();
         this.selectMonth();
 
+        //this.treeDetails();
+
+        // this.empId=this.tokenService.decodeToken().employeeId;
+        // console.log(this.empId)
+
     }
 
     list =
-        [{ id: 1, name: 'January' },
-        { id: 2, name: 'February' },
-        { id: 3, name: 'March' },
-        { id: 4, name: 'April' },
-        { id: 5, name: 'May' },
-        { id: 6, name: 'June' },
-        { id: 7, name: 'July' },
-        { id: 8, name: 'August' },
-        { id: 9, name: 'September' },
-        { id: 10, name: 'Octomber' },
-        { id: 11, name: 'November' },
-        { id: 12, name: 'December' }];
+        [
+            { id: 1, name: 'January' },
+            { id: 2, name: 'February' },
+            { id: 3, name: 'March' },
+            { id: 4, name: 'April' },
+            { id: 5, name: 'May' },
+            { id: 6, name: 'June' },
+            { id: 7, name: 'July' },
+            { id: 8, name: 'August' },
+            { id: 9, name: 'September' },
+            { id: 10, name: 'Octomber' },
+            { id: 11, name: 'November' },
+            { id: 12, name: 'December' }
+        ];
 
     kpiForm = this.fb.group(
         {
@@ -97,7 +107,7 @@ export class CreateKPI implements OnInit {
             owners: {
                 individuals: [
                     {
-                        employeeId: 'ganesh.gaikwad',
+                        employeeId: this.tokenService.decodeToken().employeeId,
                         isPrimary: true
                     }
                 ]
@@ -134,6 +144,8 @@ export class CreateKPI implements OnInit {
 
         //console.log(x);
         this.captureData.push(cdform);
+
+
     }
 
     get captureData() {
@@ -148,7 +160,8 @@ export class CreateKPI implements OnInit {
         let a = JSON.stringify(this.kpiForm.value)
         console.log(a)
 
-        this.ks.craeteKpi(this.kpiForm.value).subscribe((data) => {
+
+        this.ks.craeteKpi(a).subscribe((data) => {
             console.log("success");
             alert("KPI created successfully")
         }),
@@ -198,7 +211,7 @@ export class CreateKPI implements OnInit {
             (x: any) => {
                 // console.log(x)
                 // console.log("hii"+this.y)  || (x.order)>=this.y-1
-                if (x.order >= c ) {
+                if (x.order >= c) {
                     console.log(x.value)
                     return x.value;
                 }
@@ -257,5 +270,14 @@ export class CreateKPI implements OnInit {
             return x.id == this.id
         })
     }
+
+
+    // treeDetails() {
+    //     this.ks.treeData().subscribe((data) => {
+    //         console.log(data.response);
+    //     })
+    // }
+
+
 
 }

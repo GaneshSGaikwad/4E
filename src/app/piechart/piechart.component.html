@@ -1,0 +1,16 @@
+
+  <div class="col-sm-5">
+    <canvas
+        baseChart
+        [type]="'pie'"
+        [datasets]="pieChartData"
+        [labels]="pieChartLabels"
+        [options]="pieChartOptions"
+        [legend]="true"
+        
+        (chartClick)="onChartClick($event)">
+    </canvas>
+  </div>
+
+
+ 
